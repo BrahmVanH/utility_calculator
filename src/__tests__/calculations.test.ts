@@ -1,3 +1,4 @@
+import exp from 'constants';
 import { currentFromVoltRes, voltageFromCurRes, resistanceFromVoltCur, powerFromVoltCurr, poweFromCurrRes, powerFromVoltRes } from '../utils/calculations';
 
 // currentFromVoltRes test suite
@@ -214,4 +215,57 @@ describe('Given two positive number parameters, it should return a positive numb
 
 		expect.any(errCb).toThrowError(err);
 	});
+
+	//Exception test 3
+	it('Should throw an error if either parameter is not a number', () => {
+		const voltage = 'string';
+		const current = 12;
+		const err = new Error('Both parameters must be numbers');
+
+		const errCb = () => {
+			resistanceFromVoltCur(voltage, current);
+		};
+
+		expect(errCb).toThrowError(err);
+	});
+
+	// Exception test 4
+	it('Should throw an error if either parameter is not a number', () => {
+		const voltage = 12;
+		const current = 'string';
+		const err = new Error('Both parameters must be numbers');
+
+		const errCb = () => {
+			resistanceFromVoltCur(voltage, current);
+		};
+
+		expect(errCb).toThrowError(err);
+	});
+
+	// Exception test 5
+	it('Should throw an error if either number is negative', () => {
+		const voltage = -12;
+		const current = 12;
+		const err = new Error('Both parameters must be positive numbers');
+
+		const errCb = () => {
+			resistanceFromVoltCur(voltage, current);
+		};
+
+		expect(errCb).toThrowError(err);
+	});
+
+	// Exception test 6
+	it('Should throw an error if either number is negative', () => {
+		const voltage = 12;
+		const current = -12;
+		const err = new Error('Both parameters must be positive numbers');
+
+		const errCb = () => {
+			resistanceFromVoltCur(voltage, current);
+		};
+
+		expect(errCb).toThrowError(err);
+	});
 });
+
