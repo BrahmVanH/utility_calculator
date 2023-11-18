@@ -1,5 +1,6 @@
 import exp from 'constants';
-import { currentFromVoltRes, voltageFromCurRes, resistanceFromVoltCur, powerFromVoltCurr, poweFromCurrRes, powerFromVoltRes } from '../utils/calculations';
+import { currentFromVoltRes, voltageFromCurRes, resistanceFromVoltCur, powerFromVoltCurr, powerFromCurrRes, powerFromVoltRes } from '../utils/calculations';
+import { existsSync } from 'fs';
 
 // currentFromVoltRes test suite
 describe('calculates current/amperage from given voltage and resistance', () => {
@@ -200,7 +201,7 @@ describe('Given two positive number parameters, it should return a positive numb
 			resistanceFromVoltCur(voltage, current);
 		};
 
-		expect.any(errCb).toThrowError(err);
+		expect(errCb).toThrowError(err);
 	});
 
 	// Exception test 2
@@ -213,7 +214,7 @@ describe('Given two positive number parameters, it should return a positive numb
 			resistanceFromVoltCur(voltage, current);
 		};
 
-		expect.any(errCb).toThrowError(err);
+		expect(errCb).toThrowError(err);
 	});
 
 	//Exception test 3
@@ -269,3 +270,275 @@ describe('Given two positive number parameters, it should return a positive numb
 	});
 });
 
+// powerFromVoltCurr test suite
+describe('Given two positive number parameters, it should return a positive number representing power', () => {
+	// Passing test
+	it('Should return the product of two given numbers', () => {
+		const expectedResult = 25;
+		const voltage = 5;
+		const current = 5;
+		const result = powerFromVoltCurr(voltage, current);
+
+		expect(result).toBe(expectedResult);
+	});
+
+	// Exception test 1
+	it('Should throw an error if either parameter is undefined', () => {
+		const voltage = undefined;
+		const current = 12;
+		const err = new Error('One of the parameters is undefined');
+
+		const errCb = () => {
+			powerFromVoltCurr(voltage, current);
+		};
+
+		expect(errCb).toThrowError(err);
+	});
+
+	// Exception test 2
+	it('Should throw an error if either parameter is undefined', () => {
+		const voltage = 12;
+		const current = undefined;
+		const err = new Error('One of the parameters is undefined');
+
+		const errCb = () => {
+			powerFromVoltCurr(voltage, current);
+		};
+
+		expect(errCb).toThrowError(err);
+	});
+
+	//Exception test 3
+	it('Should throw an error if either parameter is not a number', () => {
+		const voltage = 'string';
+		const current = 12;
+		const err = new Error('Both parameters must be numbers');
+
+		const errCb = () => {
+			powerFromVoltCurr(voltage, current);
+		};
+
+		expect(errCb).toThrowError(err);
+	});
+
+	// Exception test 4
+	it('Should throw an error if either parameter is not a number', () => {
+		const voltage = 12;
+		const current = 'string';
+		const err = new Error('Both parameters must be numbers');
+
+		const errCb = () => {
+			powerFromVoltCurr(voltage, current);
+		};
+
+		expect(errCb).toThrowError(err);
+	});
+
+	// Exception test 5
+	it('Should throw an error if either number is negative', () => {
+		const voltage = -12;
+		const current = 12;
+		const err = new Error('Both parameters must be positive numbers');
+
+		const errCb = () => {
+			powerFromVoltCurr(voltage, current);
+		};
+
+		expect(errCb).toThrowError(err);
+	});
+
+	// Exception test 6
+	it('Should throw an error if either number is negative', () => {
+		const voltage = 12;
+		const current = -12;
+		const err = new Error('Both parameters must be positive numbers');
+
+		const errCb = () => {
+			powerFromVoltCurr(voltage, current);
+		};
+
+		expect(errCb).toThrowError(err);
+	});
+});
+
+// powerFromCurrRes test suite
+describe('Given two positive number parameters, it should return a positive number representing power', () => {
+	// Passing test
+	it('Should return the product of the square of the current and resistance', () => {
+		const expectedResult = 5 * 5 * 5;
+		const current = 5;
+		const resistance = 5;
+		const result = powerFromCurrRes(current, resistance);
+
+		expect(result).toBe(expectedResult);
+	});
+
+	// Exception test 1
+	it('Should throw an error if either parameter is undefined', () => {
+		const current = 12;
+		const resistance = undefined;
+		const err = new Error('One of the parameters is undefined');
+
+		const errCb = () => {
+			powerFromCurrRes(current, resistance);
+		};
+
+		expect(errCb).toThrowError(err);
+	});
+
+	// Exception test 2
+	it('Should throw an error if either parameter is undefined', () => {
+		const current = undefined;
+		const resistance = 12;
+		const err = new Error('One of the parameters is undefined');
+
+		const errCb = () => {
+			powerFromCurrRes(current, resistance);
+		};
+
+		expect(errCb).toThrowError(err);
+	});
+
+	//Exception test 3
+	it('Should throw an error if either parameter is not a number', () => {
+		const current = 12;
+		const resistance = 'string';
+		const err = new Error('Both parameters must be numbers');
+
+		const errCb = () => {
+			powerFromCurrRes(current, resistance);
+		};
+
+		expect(errCb).toThrowError(err);
+	});
+
+	// Exception test 4
+	it('Should throw an error if either parameter is not a number', () => {
+		const current = 'string';
+		const resistance = 12;
+		const err = new Error('Both parameters must be numbers');
+
+		const errCb = () => {
+			powerFromVoltCurr(current, resistance);
+		};
+
+		expect(errCb).toThrowError(err);
+	});
+
+	// Exception test 5
+	it('Should throw an error if either number is negative', () => {
+		const current = 12;
+		const resistance = -12;
+		const err = new Error('Both parameters must be positive numbers');
+
+		const errCb = () => {
+			powerFromCurrRes(current, resistance);
+		};
+
+		expect(errCb).toThrowError(err);
+	});
+
+	// Exception test 6
+	it('Should throw an error if either number is negative', () => {
+		const current = -12;
+		const resistance = 12;
+		const err = new Error('Both parameters must be positive numbers');
+
+		const errCb = () => {
+			powerFromCurrRes(current, resistance);
+		};
+
+		expect(errCb).toThrowError(err);
+	});
+});
+
+// powerFromVoltRes test suite
+describe('Given two positive number parameters, it should return a positive number representing power', () => {
+	// Passing test
+	it('Should return the quotient of the square of the voltage over resistance', () => {
+		const expectedResult = (5 * 5) / 5;
+		const voltage = 5;
+		const resistance = 5;
+		const result = powerFromVoltRes(voltage, resistance);
+
+		expect(result).toBe(expectedResult);
+	});
+
+	// Exception test 1
+	it('Should throw an error if either parameter is undefined', () => {
+		const voltage = 12;
+		const resistance = undefined;
+		const err = new Error('One of the parameters is undefined');
+
+		const errCb = () => {
+			powerFromVoltRes(voltage, resistance);
+		};
+
+		expect(errCb).toThrowError(err);
+	});
+
+	// Exception test 2
+	it('Should throw an error if either parameter is undefined', () => {
+		const voltage = undefined;
+		const resistance = 12;
+		const err = new Error('One of the parameters is undefined');
+
+		const errCb = () => {
+			powerFromVoltRes(voltage, resistance);
+		};
+
+		expect(errCb).toThrowError(err);
+	});
+
+	//Exception test 3
+	it('Should throw an error if either parameter is not a number', () => {
+		const voltage = 12;
+		const resistance = 'string';
+		const err = new Error('Both parameters must be numbers');
+
+		const errCb = () => {
+			powerFromVoltRes(voltage, resistance);
+		};
+
+		expect(errCb).toThrowError(err);
+	});
+
+	// Exception test 4
+	it('Should throw an error if either parameter is not a number', () => {
+		const voltage = 'string';
+		const resistance = 12;
+		const err = new Error('Both parameters must be numbers');
+
+		const errCb = () => {
+			powerFromVoltRes(voltage, resistance);
+		};
+
+		expect(errCb).toThrowError(err);
+	});
+
+	// Exception test 5
+	it('Should throw an error if either number is negative', () => {
+		const voltage = 12;
+		const resistance = -12;
+		const err = new Error('Both parameters must be positive numbers');
+
+		const errCb = () => {
+			powerFromVoltRes(voltage, resistance);
+		};
+
+		expect(errCb).toThrowError(err);
+	});
+
+	// Exception test 6
+	it('Should throw an error if either number is negative', () => {
+		const voltage = -12;
+		const resistance = 12;
+		const err = new Error('Both parameters must be positive numbers');
+
+		const errCb = () => {
+			powerFromVoltRes(voltage, resistance);
+		};
+
+		expect(errCb).toThrowError(err);
+	});
+});

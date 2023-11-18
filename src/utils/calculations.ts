@@ -47,7 +47,7 @@ export const powerFromVoltCurr = (voltage: number, current: number): number => {
 };
 
 // Find power using current and resistance 
-export const poweFromCurrRes = (current: number, resistance: number): number => {
+export const powerFromCurrRes = (current: number, resistance: number): number => {
    if (!current || !resistance) {
 			throw new Error('One of the parameters is undefined');
 		} else if (typeof current != 'number' || typeof resistance != 'number') {
