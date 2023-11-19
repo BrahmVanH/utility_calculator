@@ -1,11 +1,10 @@
 import exp from 'constants';
 import { currentFromVoltRes, voltageFromCurRes, resistanceFromVoltCur, powerFromVoltCurr, powerFromCurrRes, powerFromVoltRes } from '../utils/calculations';
-import { existsSync } from 'fs';
 
 // currentFromVoltRes test suite
 describe('calculates current/amperage from given voltage and resistance', () => {
 	// Passing test
-	it('Should return a positive number given two positive numbers', () => {
+	it('Should return the quotient of two positive numbers', () => {
 		const expectedResult = 1;
 		const result = currentFromVoltRes(5, 5);
 		expect(result).toBe(expectedResult);
@@ -67,7 +66,7 @@ describe('calculates current/amperage from given voltage and resistance', () => 
 		const voltage = -12;
 		const resistance = 12;
 
-		const err = new Error('Both parameters must be positive numbers');
+		const err = new Error('Both parameters must be positive numbers greater than zero');
 
 		const errCb = () => {
 			currentFromVoltRes(voltage, resistance);
@@ -80,7 +79,7 @@ describe('calculates current/amperage from given voltage and resistance', () => 
 		const voltage = 12;
 		const resistance = -12;
 
-		const err = new Error('Both parameters must be positive numbers');
+		const err = new Error('Both parameters must be positive numbers greater than zero');
 
 		const errCb = () => {
 			currentFromVoltRes(voltage, resistance);
@@ -157,7 +156,7 @@ describe('Given two number parameters, it should calculate voltage and return a 
 	it('Should throw an error if either number is negative', () => {
 		const current = -12;
 		const resistance = 12;
-		const err = Error('Both parameters must be positive numbers');
+		const err = Error('Both parameters must be positive numbers greater than zero');
 
 		const errCb = () => {
 			voltageFromCurRes(current, resistance);
@@ -169,7 +168,7 @@ describe('Given two number parameters, it should calculate voltage and return a 
 	it('Should throw an error if either number is negative', () => {
 		const current = 12;
 		const resistance = -12;
-		const err = Error('Both parameters must be positive numbers');
+		const err = Error('Both parameters must be positive numbers greater than zero');
 
 		const errCb = () => {
 			voltageFromCurRes(current, resistance);
@@ -247,7 +246,7 @@ describe('Given two positive number parameters, it should return a positive numb
 	it('Should throw an error if either number is negative', () => {
 		const voltage = -12;
 		const current = 12;
-		const err = new Error('Both parameters must be positive numbers');
+		const err = new Error('Both parameters must be positive numbers greater than zero');
 
 		const errCb = () => {
 			resistanceFromVoltCur(voltage, current);
@@ -260,7 +259,7 @@ describe('Given two positive number parameters, it should return a positive numb
 	it('Should throw an error if either number is negative', () => {
 		const voltage = 12;
 		const current = -12;
-		const err = new Error('Both parameters must be positive numbers');
+		const err = new Error('Both parameters must be positive numbers greater than zero');
 
 		const errCb = () => {
 			resistanceFromVoltCur(voltage, current);
@@ -338,7 +337,7 @@ describe('Given two positive number parameters, it should return a positive numb
 	it('Should throw an error if either number is negative', () => {
 		const voltage = -12;
 		const current = 12;
-		const err = new Error('Both parameters must be positive numbers');
+		const err = new Error('Both parameters must be positive numbers greater than zero');
 
 		const errCb = () => {
 			powerFromVoltCurr(voltage, current);
@@ -351,7 +350,7 @@ describe('Given two positive number parameters, it should return a positive numb
 	it('Should throw an error if either number is negative', () => {
 		const voltage = 12;
 		const current = -12;
-		const err = new Error('Both parameters must be positive numbers');
+		const err = new Error('Both parameters must be positive numbers greater than zero');
 
 		const errCb = () => {
 			powerFromVoltCurr(voltage, current);
@@ -429,7 +428,7 @@ describe('Given two positive number parameters, it should return a positive numb
 	it('Should throw an error if either number is negative', () => {
 		const current = 12;
 		const resistance = -12;
-		const err = new Error('Both parameters must be positive numbers');
+		const err = new Error('Both parameters must be positive numbers greater than zero');
 
 		const errCb = () => {
 			powerFromCurrRes(current, resistance);
@@ -442,7 +441,7 @@ describe('Given two positive number parameters, it should return a positive numb
 	it('Should throw an error if either number is negative', () => {
 		const current = -12;
 		const resistance = 12;
-		const err = new Error('Both parameters must be positive numbers');
+		const err = new Error('Both parameters must be positive numbers greater than zero');
 
 		const errCb = () => {
 			powerFromCurrRes(current, resistance);
@@ -520,7 +519,7 @@ describe('Given two positive number parameters, it should return a positive numb
 	it('Should throw an error if either number is negative', () => {
 		const voltage = 12;
 		const resistance = -12;
-		const err = new Error('Both parameters must be positive numbers');
+		const err = new Error('Both parameters must be positive numbers greater than zero');
 
 		const errCb = () => {
 			powerFromVoltRes(voltage, resistance);
@@ -533,7 +532,7 @@ describe('Given two positive number parameters, it should return a positive numb
 	it('Should throw an error if either number is negative', () => {
 		const voltage = -12;
 		const resistance = 12;
-		const err = new Error('Both parameters must be positive numbers');
+		const err = new Error('Both parameters must be positive numbers greater than zero');
 
 		const errCb = () => {
 			powerFromVoltRes(voltage, resistance);

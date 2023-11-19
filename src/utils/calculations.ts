@@ -4,8 +4,8 @@ export const currentFromVoltRes = (voltage: number, resistance: number): number 
     throw new Error("Voltage or resistance is undefined");
   } else if (typeof voltage != 'number' || typeof resistance != 'number') {
     throw new Error("Voltage and resistance must be numbers");
-  } else if (voltage < 0 || resistance < 0) {
-    throw new Error('Both parameters must be positive numbers');
+  } else if (voltage < 1 || resistance < 1) {
+    throw new Error('Both parameters must be positive numbers greater than zero');
   }
    return voltage / resistance;
 }
@@ -16,8 +16,8 @@ export const voltageFromCurRes = (current: number, resistance: number): number =
 		throw new Error('Current or resistance is undefined');
 	} else if (typeof current != 'number' || typeof resistance != 'number') {
 		throw new Error('Both parameters must be numbers');
-	} else if (current < 0 || resistance < 0) {
-		throw new Error('Both parameters must be positive numbers');
+	} else if (current < 1 || resistance < 1) {
+		throw new Error('Both parameters must be positive numbers greater than zero');
 	}
   return current * resistance;
 }
@@ -28,8 +28,8 @@ export const resistanceFromVoltCur = (voltage: number, current: number): number 
 		throw new Error('One of the parameters is undefined');
 	} else if (typeof voltage != 'number' || typeof current != 'number') {
 		throw new Error('Both parameters must be numbers');
-	} else if (voltage < 0 || current < 0) {
-		throw new Error('Both parameters must be positive numbers');
+	} else if (voltage < 1 || current < 1) {
+		throw new Error('Both parameters must be positive numbers greater than zero');
 	}
   return voltage / current;
 }
@@ -40,8 +40,8 @@ export const powerFromVoltCurr = (voltage: number, current: number): number => {
 		throw new Error('One of the parameters is undefined');
 	} else if (typeof voltage != 'number' || typeof current != 'number') {
 		throw new Error('Both parameters must be numbers');
-	} else if (voltage < 0 || current < 0) {
-		throw new Error('Both parameters must be positive numbers');
+	} else if (voltage < 1 || current < 1) {
+		throw new Error('Both parameters must be positive numbers greater than zero');
 	}
   return voltage * current;
 };
@@ -52,8 +52,8 @@ export const powerFromCurrRes = (current: number, resistance: number): number =>
 			throw new Error('One of the parameters is undefined');
 		} else if (typeof current != 'number' || typeof resistance != 'number') {
 			throw new Error('Both parameters must be numbers');
-		} else if (current < 0 || resistance < 0) {
-			throw new Error('Both parameters must be positive numbers');
+		} else if (current < 1 || resistance < 1) {
+			throw new Error('Both parameters must be positive numbers greater than zero');
 		}
   return (Math.pow(current, 2) * resistance);
 }
@@ -64,8 +64,8 @@ export const powerFromVoltRes = (voltage: number, resistance: number): number =>
 		throw new Error('One of the parameters is undefined');
 	} else if (typeof voltage != 'number' || typeof resistance != 'number') {
 		throw new Error('Both parameters must be numbers');
-	} else if (voltage < 0 || resistance < 0) {
-		throw new Error('Both parameters must be positive numbers');
+	} else if (voltage < 1 || resistance < 1) {
+		throw new Error('Both parameters must be positive numbers greater than zero');
 	}
   return (Math.pow(voltage, 2) / resistance);
 }
