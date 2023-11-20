@@ -24,9 +24,9 @@ const CurrentFromVRForm: FC = () => {
 
 	useEffect(() => {
 		if (voltage && resistance) {
-      console.log(typeof voltage);
+			console.log(typeof voltage);
 			const current = currentFromVoltRes(voltage, resistance);
-      setCurrent(current);
+			setCurrent(current);
 		}
 	}, [voltage, resistance]);
 
@@ -35,12 +35,12 @@ const CurrentFromVRForm: FC = () => {
 	}, [current]);
 
 	return (
-		<form onSubmit={handleSubmit((data) => handleFormData(data))}>
+		<form className='input-form' onSubmit={handleSubmit((data) => console.log(data))}>
 			<input type='number' {...register('voltage', { required: true, pattern: /\d+/ })} />
 			{errors.voltage && <p>Voltage is required for this calculation</p>}
 			<input type='number' {...register('resistance', { required: true, pattern: /\d+/ })} />
 			{errors.resistance && <p>Resistance is required for this calculation.</p>}
-			<input type='submit' />
+			<button type='submit'>Calculate</button>
 		</form>
 	);
 };
