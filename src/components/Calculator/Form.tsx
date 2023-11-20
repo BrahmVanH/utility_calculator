@@ -3,8 +3,8 @@ import { useForm, FieldValues } from 'react-hook-form';
 
 
 type CalcVariables = {
-	variable1: string;
-	variable2: string;
+	type1: string;
+	type2: string;
 };
 
 type CalculationFunction = ((arg1: number, arg2: number) => number);
@@ -28,9 +28,9 @@ const Form: FC<IProps> = ({ variables, calculationFunction }) => {
 	const [result, setResult] = useState<number | null>(null);
 
 	useEffect(() => {
-		if (variables.variable1 && variables.variable2) {
-			setVariable1Type(variables.variable1);
-			setVariable2Type(variables.variable2);
+		if (variables.type1 && variables.type2) {
+			setVariable1Type(variables.type1);
+			setVariable2Type(variables.type2);
 			setCalculation(calculationFunction);
 		}
 	});

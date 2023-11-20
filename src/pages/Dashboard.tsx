@@ -1,10 +1,12 @@
 import React from 'react';
-import CurrentFromVRForm from '../components/Calculator/CurrentFromVRForm';
+import Calculator from '../components/Calculator';
+
+import './dashboard.css';
 
 const Dashboard = () => {
 	return (
-		<div>
-			<CurrentFromVRForm />
+		<div className='dashboard'>
+			<Calculator/>
 		</div>
 	);
 };
