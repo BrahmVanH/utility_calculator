@@ -50,3 +50,20 @@ export const getVariableTypes = (calculationFunction: CalculationFunction) => {
 
 	return variableTypes;
 };
+
+export const getCalculationFunction = (functionString: string) => {
+	switch (functionString) {
+		case 'currVolRes':
+			return currentFromVoltRes;
+		case 'volCurRes':
+			return voltageFromCurRes;
+		case 'resVolCur':
+			return resistanceFromVoltCur;
+		case 'powVolCur':
+			return powerFromVoltCurr;
+		case 'powCurRes':
+			return powerFromCurrRes;
+		case 'powVolRes':
+			return powerFromVoltRes;
+	}
+}

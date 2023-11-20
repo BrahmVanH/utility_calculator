@@ -2,6 +2,7 @@ import React, { useEffect, useState, FC } from 'react';
 import Form from './Form';
 import { currentFromVoltRes, voltageFromCurRes, resistanceFromVoltCur, powerFromVoltCurr, powerFromCurrRes, powerFromVoltRes } from '../../utils/calculations';
 import { getVariableTypes } from '../../utils/helper';
+import Keypad from './Keypad';
 
 type CalcVariables = {
 	type1: string;
@@ -27,6 +28,7 @@ const Calculator: FC = () => {
 	return (
 		<div className='calculator'>
 			<Form variables={calcVariables} calculationFunction={selectedCalculation} />
+      <Keypad />
 		</div>
 	);
 };
